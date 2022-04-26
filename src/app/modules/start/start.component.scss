@@ -1,0 +1,19 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+
+.start-container {
+  @include setFlexProps(column, top, center);
+
+  h1 {
+    font-size: 34px;
+    font-weight: 400;
+    text-align: center;
+    margin: 20vh 0 15vh 0;
+    font-family: Montserrat, serif;
+  }
+
+  .option-container {
+    width: 90%;
+  }
+}

@@ -1,0 +1,13 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+.nav-bar-container {
+  width: 100%;
+  height: 100px;
+  @include setFlexProps(row, space-evenly, center);
+}
+
+.decorate-line {
+  margin: 0 10% 0 10%;
+  opacity: 40%;
+}

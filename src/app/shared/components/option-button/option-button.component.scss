@@ -1,0 +1,12 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+button {
+  width: 100%;
+  border-radius: 20px;
+  font-size: 24px;
+  height: 76px;
+  background-color: $light-green;
+  margin-bottom: 15px;
+  font-family: Montserrat, serif;
+}

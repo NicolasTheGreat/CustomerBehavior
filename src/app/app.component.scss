@@ -1,0 +1,10 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+.app-container {
+  @include setFlexProps(column, space-between, stretch);
+  //display: flex;
+  height: 100%;
+  //flex-direction: column;
+  //justify-content: space-between;
+}
