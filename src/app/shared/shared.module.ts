@@ -4,6 +4,7 @@ import { OptionButtonComponent } from './components/option-button/option-button.
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from "@angular/material/card";
 
 
 @NgModule({
@@ -14,11 +15,15 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
+    MatCardModule,
     MatIconModule
   ],
   exports: [
     OptionButtonComponent,
-    IconButtonComponent
+    IconButtonComponent,
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class SharedModule {

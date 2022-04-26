@@ -1,0 +1,58 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+.experiment-card {
+  width: 80%;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.customer-name {
+  width: 100%;
+  margin: 15px;
+  p {
+    color: #9B9797;
+    font-size: 15px;
+  }
+  h2 {
+    margin: 0;
+  }
+}
+
+.customer-data {
+  margin-left: 10px;
+}
+
+.particular-data {
+  @include setFlexProps(row, start, center);
+  width: 100%;
+  color: #4f4f4f;
+  margin-bottom: 20px;
+
+  p {
+    margin: 0 0 0 10px;
+  }
+}
+
+.columns {
+  display: flex;
+  width: 100%;
+
+  .column {
+    width: 50%;
+  }
+}
+
+.image-container {
+  width: 100%;
+  @include setFlexProps(row, center, center);
+  img {
+    border-radius: 25px;
+    box-shadow: 20px 10px 30px -20px rgba(66, 68, 90, 1);
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+

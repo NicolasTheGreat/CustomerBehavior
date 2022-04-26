@@ -1,0 +1,6 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+.experiment-card {
+  @include setFlexProps(column, start, center);
+}
