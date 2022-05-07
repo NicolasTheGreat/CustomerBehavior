@@ -2,5 +2,5 @@
 <div *ngIf="navbarManager.navbarVisible$ | async" class="nav-bar-container">
   <app-icon-button [routerLink]="'/start'">arrow_back_ios</app-icon-button>
   <app-icon-button>visibility</app-icon-button>
-  <app-icon-button>info</app-icon-button>
+  <app-icon-button (click)="testApi()">info</app-icon-button>
 </div>

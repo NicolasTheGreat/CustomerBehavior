@@ -1,10 +1,17 @@
-<swiper class="mySwiper" [config]="config">
+<div *ngIf="!currentCustomer || !experimentReady" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="score-container">
+  <app-score-card></app-score-card>
+</div>
+<swiper class="mySwiper" [config]="config" (slideNextTransitionEnd)="accept()"
+        (slidePrevTransitionEnd)="reject()">
   <div class="wrong">
     <mat-card style="background-color: red; height: 400px; margin-top: 25px"></mat-card>
   </div>
-  <app-experiment-card class="experiment-card" [customer]="currentCustomer"></app-experiment-card>
+  <app-experiment-card class="experiment-card" [customer]="currentCustomer">
+  </app-experiment-card>
   <div class="wrong">
     <mat-card style="background-color: lightgreen; height: 400px; margin-top: 25px"></mat-card>
   </div>
 </swiper>
-<button (click)="next()">next</button>

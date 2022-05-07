@@ -4,13 +4,15 @@ import { ExperimentComponent } from './experiment.component';
 import { ExperimentRoutingModule } from './experiment-routing/experiment-routing.module';
 import { ExperimentCardComponent } from './components/experiment-card/experiment-card.component';
 import {SharedModule} from "../../shared/shared.module";
+import { ScoreCardComponent } from './components/score-card/score-card.component';
 
 
 
 @NgModule({
   declarations: [
     ExperimentComponent,
-    ExperimentCardComponent
+    ExperimentCardComponent,
+    ScoreCardComponent
   ],
   imports: [
     CommonModule,

@@ -15,6 +15,7 @@ export class ExperimentComponent implements OnInit {
   @ViewChild(SwiperComponent) componentRef: SwiperComponent;
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
   public currentCustomer: CustomerModel;
+  public experimentReady = false;
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -33,12 +34,36 @@ export class ExperimentComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarManager.navbarVisible$.next(true);
+    this.prepareExperiment();
+  }
+
+  public prepareExperiment(): void {
+    this.experimentReady = false;
     this.api.getCustomer().subscribe((res: DefaultResponse<CustomerModel>) => {
       this.currentCustomer = res.data;
     });
+    setTimeout(() => {
+      this.experimentReady = true;
+    }, 500);
   }
 
   next(): void {
-    this.componentRef.directiveRef.nextSlide();
+  }
+
+  public accept(): void {
+    console.log('przydzielam');
+    console.log(this.componentRef.directiveRef.getIndex());
+    if (this.componentRef.directiveRef.getIndex() === 2) {
+      this.prepareExperiment();
+      this.componentRef.directiveRef.prevSlide();
+    }
+  }
+
+  public reject(): void {
+    console.log('odrzucam');
+    if (this.componentRef.directiveRef.getIndex() === 0) {
+      this.prepareExperiment();
+      this.componentRef.directiveRef.nextSlide();
+    }
   }
 }

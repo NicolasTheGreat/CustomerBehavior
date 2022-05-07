@@ -1,0 +1,92 @@
+@import "src/webassets/styles/mixins/flex-mixins";
+@import "src/webassets/styles/colors";
+
+.header-wrapper {
+  width: 100%;
+}
+
+.cards-container {
+  margin: 10px 10px 0 10px;
+  @include setFlexProps(row, space-between, start);
+
+  mat-card {
+    border-radius: 20px;
+    background-color: $light-green;
+  }
+}
+
+.results-container {
+  width: 78%;
+
+  mat-card {
+    @include setFlexProps(row, center, stretch);
+    height: 78px;
+    padding: 0;
+  }
+}
+
+.section {
+  @include setFlexProps(row, center, stretch);
+
+  .sub-section {
+    @include setFlexProps(row, center, stretch);
+    margin: 2px 0;
+  }
+
+  .positive-section {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+}
+
+.true-section {
+  width: 38%;
+  @include setFlexProps(column, center, stretch);
+
+  .metric-score {
+    @include setFlexProps(column, center, stretch);
+    font-size: 20px;
+    margin: 5px 0 5px 10px;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+.round-section {
+  @include setFlexProps(column, center, stretch);
+
+  p {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .round-wrapper {
+    border-left: 1px solid rgba(0,0,0,0.2);
+    border-right: 1px solid rgba(0,0,0,0.2);;
+  }
+
+  width: 20%;
+}
+
+.false-section {
+  width: 38%;
+}
+
+.score-container {
+  mat-card {
+    height: 78px;
+    width: 70px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 17px;
+    @include setFlexProps(column, center, center);
+
+    p {
+      margin: 0;
+    }
+  }
+}
+

@@ -11,6 +11,7 @@ import {
   SWIPER_CONFIG
 } from 'ngx-swiper-wrapper';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -19,7 +20,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   threshold: 50,
   spaceBetween: 5,
   slidesPerView: 1,
-  centeredSlides: true
+  centeredSlides: true,
+  initialSlide: 1
 };
 
 @NgModule({
@@ -33,6 +35,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatIconModule,
     MatCardModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     SwiperModule,
     HttpClientModule
   ],
@@ -41,6 +44,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     IconButtonComponent,
     MatCardModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     SwiperModule
   ],
   providers: [

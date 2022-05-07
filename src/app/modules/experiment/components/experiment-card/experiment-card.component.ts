@@ -12,7 +12,6 @@ export class ExperimentCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.customer);
   }
 
 }
