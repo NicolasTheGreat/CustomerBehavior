@@ -4,8 +4,23 @@ import { OptionButtonComponent } from './components/option-button/option-button.
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from "@angular/material/card";
+import { MatCardModule } from '@angular/material/card';
 
+import {
+  SwiperModule, SwiperConfigInterface,
+  SWIPER_CONFIG
+} from 'ngx-swiper-wrapper';
+import { HttpClientModule } from '@angular/common/http';
+
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  observer: true,
+  direction: 'horizontal',
+  threshold: 50,
+  spaceBetween: 5,
+  slidesPerView: 1,
+  centeredSlides: true
+};
 
 @NgModule({
   declarations: [
@@ -17,13 +32,22 @@ import { MatCardModule } from "@angular/material/card";
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    SwiperModule,
+    HttpClientModule
   ],
   exports: [
     OptionButtonComponent,
     IconButtonComponent,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    SwiperModule
+  ],
+  providers: [
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ]
 })
 export class SharedModule {

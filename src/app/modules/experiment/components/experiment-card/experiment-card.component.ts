@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CustomerModel } from '../../../../shared/models/customer.model';
 
 @Component({
   selector: 'app-experiment-card',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./experiment-card.component.scss']
 })
 export class ExperimentCardComponent implements OnInit {
+  @Input() customer: CustomerModel;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.customer);
   }
 
 }

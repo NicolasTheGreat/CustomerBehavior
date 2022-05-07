@@ -1,1 +1,10 @@
-<app-experiment-card class="experiment-card"></app-experiment-card>
+<swiper class="mySwiper" [config]="config">
+  <div class="wrong">
+    <mat-card style="background-color: red; height: 400px; margin-top: 25px"></mat-card>
+  </div>
+  <app-experiment-card class="experiment-card" [customer]="currentCustomer"></app-experiment-card>
+  <div class="wrong">
+    <mat-card style="background-color: lightgreen; height: 400px; margin-top: 25px"></mat-card>
+  </div>
+</swiper>
+<button (click)="next()">next</button>

@@ -1,6 +1,17 @@
 @import "src/webassets/styles/mixins/flex-mixins";
 @import "src/webassets/styles/colors";
 
+
 .experiment-card {
   @include setFlexProps(column, start, center);
+}
+
+.swiper-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
