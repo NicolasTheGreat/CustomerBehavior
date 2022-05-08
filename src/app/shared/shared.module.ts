@@ -12,6 +12,9 @@ import {
 } from 'ngx-swiper-wrapper';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PercentagePipe } from './utils/percentage.pipe';
+import { MarkerOffsetPipe } from './utils/marker-offset.pipe';
+import { CashPipe } from './utils/cash.pipe';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -28,6 +31,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   declarations: [
     OptionButtonComponent,
     IconButtonComponent,
+    PercentagePipe,
+    MarkerOffsetPipe,
+    CashPipe,
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    SwiperModule
+    SwiperModule,
+    PercentagePipe,
+    MarkerOffsetPipe,
+    CashPipe
   ],
   providers: [
     {

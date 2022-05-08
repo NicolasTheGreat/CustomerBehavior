@@ -11,8 +11,8 @@
       <div class="columns">
         <div class="column">
           <div class="particular-data">
-            <mat-icon>attach_money</mat-icon>
-            <p>{{customer.income}}$</p>
+            <mat-icon>paid</mat-icon>
+            <p>{{customer.income | currency : 'USD' : 'symbol' : '1.0-0'}}</p>
           </div>
           <div class="particular-data">
             <mat-icon>favorite</mat-icon>
@@ -34,6 +34,9 @@
         <mat-icon>work</mat-icon>
         <p>{{customer.profession}} for {{customer.currentJobYears}} years</p>
       </div>
+    </div>
+    <div class="metric-scale-container" *ngIf="showHint | async">
+      <app-metric-scale [riskPercent]="customer.riskChance | percentage"></app-metric-scale>
     </div>
   </mat-card>
 </ng-container>

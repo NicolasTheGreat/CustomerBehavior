@@ -1,0 +1,11 @@
+<div class="metric-container">
+  <div class="scale-container">
+    <div class="icon-scale">
+      <mat-icon class="material-icons-round" style="transform: scale(1.4);">
+        place
+      </mat-icon>
+      <p [style.margin-right]="riskPercent | markerOffset">{{riskPercent}}%</p>
+    </div>
+    <div class="metric-track"></div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { ExperimentRoutingModule } from './experiment-routing/experiment-routing
 import { ExperimentCardComponent } from './components/experiment-card/experiment-card.component';
 import {SharedModule} from "../../shared/shared.module";
 import { ScoreCardComponent } from './components/score-card/score-card.component';
+import { MetricScaleComponent } from './components/metric-scale/metric-scale.component';
 
 
 
@@ -12,7 +13,8 @@ import { ScoreCardComponent } from './components/score-card/score-card.component
   declarations: [
     ExperimentComponent,
     ExperimentCardComponent,
-    ScoreCardComponent
+    ScoreCardComponent,
+    MetricScaleComponent
   ],
   imports: [
     CommonModule,

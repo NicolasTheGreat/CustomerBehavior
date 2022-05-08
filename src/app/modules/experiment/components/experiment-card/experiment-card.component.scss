@@ -5,6 +5,8 @@
   width: 85%;
   margin: 10px;
   border-radius: 20px;
+  background: rgb(237,237,237);
+  background: linear-gradient(90deg, rgba(237,237,237,1) 0%, rgba(251,251,251,1) 100%);
 }
 
 .customer-name {
@@ -24,11 +26,11 @@
 }
 
 .particular-data {
-  @include setFlexProps(row, start, center);
+  @include setFlexProps(row, flex-start, center);
   width: 100%;
   color: #4f4f4f;
   margin-bottom: 20px;
-
+  min-height: 40px;
   p {
     margin: 0 0 0 10px;
   }
@@ -54,5 +56,9 @@
     object-fit: cover;
     object-position: top;
   }
+}
+
+.metric-scale-container {
+  margin-bottom: 10px !important;
 }
 

@@ -4,6 +4,9 @@ import { SwiperComponent, SwiperConfigInterface, SwiperDirective } from 'ngx-swi
 import { CustomerApiService } from '../../shared/services/customer-api.service';
 import { CustomerModel } from '../../shared/models/customer.model';
 import { DefaultResponse } from '../../shared/models/default-response.model';
+import { StoreService } from '../core/services/store.service';
+import { ExperimentModel } from '../core/models/experiment.model';
+import { ExperimentService } from './services/experiment.service';
 
 
 @Component({
@@ -15,7 +18,8 @@ export class ExperimentComponent implements OnInit {
   @ViewChild(SwiperComponent) componentRef: SwiperComponent;
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
   public currentCustomer: CustomerModel;
-  public experimentReady = false;
+  public taskReady = false;
+  private globalExperiment: ExperimentModel = new ExperimentModel();
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -24,46 +28,49 @@ export class ExperimentComponent implements OnInit {
     mousewheel: false,
     scrollbar: false,
     pagination: false,
-    initialSlide: 1
+    initialSlide: 1,
+    effect: 'slide',
   };
 
   constructor(private navbarManager: NavbarManagerService,
-              private api: CustomerApiService
+              private api: CustomerApiService,
+              private experimentService: ExperimentService,
   ) {
   }
 
   ngOnInit(): void {
     this.navbarManager.navbarVisible$.next(true);
-    this.prepareExperiment();
+    this.prepareTask();
   }
 
-  public prepareExperiment(): void {
-    this.experimentReady = false;
+  public prepareTask(): void {
+    this.taskReady = false;
     this.api.getCustomer().subscribe((res: DefaultResponse<CustomerModel>) => {
+      res.data.income = res.data.income / 77;
       this.currentCustomer = res.data;
     });
     setTimeout(() => {
-      this.experimentReady = true;
+      this.taskReady = true;
     }, 500);
   }
 
-  next(): void {
-  }
-
   public accept(): void {
-    console.log('przydzielam');
-    console.log(this.componentRef.directiveRef.getIndex());
     if (this.componentRef.directiveRef.getIndex() === 2) {
-      this.prepareExperiment();
-      this.componentRef.directiveRef.prevSlide();
+      setTimeout(() => {
+        this.experimentService.executeIssue(true, this.currentCustomer.riskChance);
+        this.prepareTask();
+        this.componentRef.directiveRef.prevSlide();
+      }, 150);
     }
   }
 
   public reject(): void {
-    console.log('odrzucam');
     if (this.componentRef.directiveRef.getIndex() === 0) {
-      this.prepareExperiment();
-      this.componentRef.directiveRef.nextSlide();
+      setTimeout(() => {
+        this.experimentService.executeIssue(false, this.currentCustomer.riskChance);
+        this.prepareTask();
+        this.componentRef.directiveRef.nextSlide();
+      }, 150);
     }
   }
 }

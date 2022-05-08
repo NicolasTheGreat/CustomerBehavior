@@ -1,4 +1,4 @@
-<div *ngIf="!currentCustomer || !experimentReady" class="spinner-container">
+<div *ngIf="!currentCustomer || !taskReady" class="spinner-container">
   <mat-spinner></mat-spinner>
 </div>
 <div class="score-container">
@@ -6,12 +6,18 @@
 </div>
 <swiper class="mySwiper" [config]="config" (slideNextTransitionEnd)="accept()"
         (slidePrevTransitionEnd)="reject()">
-  <div class="wrong">
-    <mat-card style="background-color: red; height: 400px; margin-top: 25px"></mat-card>
+  <div class="answer">
+    <mat-card class="negative">
+      <app-icon-button class="answer-icon">close</app-icon-button>
+      <p>Disagree</p>
+    </mat-card>
   </div>
   <app-experiment-card class="experiment-card" [customer]="currentCustomer">
   </app-experiment-card>
-  <div class="wrong">
-    <mat-card style="background-color: lightgreen; height: 400px; margin-top: 25px"></mat-card>
+  <div class="answer">
+    <mat-card class="positive">
+      <app-icon-button class="answer-icon">done</app-icon-button>
+      <p>Agree</p>
+    </mat-card>
   </div>
 </swiper>
