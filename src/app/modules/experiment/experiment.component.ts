@@ -52,7 +52,7 @@ export class ExperimentComponent implements OnInit {
     this.api.fetchCustomer(id).subscribe((res: DefaultResponse<CustomerModel>) => {
       res.data.income = res.data.income / 77;
       this.currentCustomer = res.data;
-      this.photoRoot = this.photoMatch.getPhoto(res.data.age);
+      this.photoRoot = this.photoMatch.getPhoto(res.data.age, res.data.profession);
     });
     setTimeout(() => {
       this.taskReady = true;
