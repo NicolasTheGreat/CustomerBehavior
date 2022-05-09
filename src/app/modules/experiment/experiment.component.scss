@@ -8,7 +8,7 @@
 
 .swiper-container {
   position: absolute;
-  height: 100%;
+  //height: 100%;
   width: 100%;
   top: 0;
   right: 0;
@@ -33,7 +33,7 @@
 .answer {
   mat-card {
     @include setFlexProps(column, center, center);
-    height: calc(100% - 90px - 82px);
+    height: calc(100% - 82px);
     margin: 25px 10px 0 10px;
     border-radius: 20px;
     p {

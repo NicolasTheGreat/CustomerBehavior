@@ -5,8 +5,8 @@ import { CustomerApiService } from '../../shared/services/customer-api.service';
 import { CustomerModel } from '../../shared/models/customer.model';
 import { DefaultResponse } from '../../shared/models/default-response.model';
 import { StoreService } from '../core/services/store.service';
-import { ExperimentModel } from '../core/models/experiment.model';
 import { ExperimentService } from './services/experiment.service';
+import { PhotoMatchService } from '../core/services/photo-match.service';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class ExperimentComponent implements OnInit {
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
   public currentCustomer: CustomerModel;
   public taskReady = false;
-  private globalExperiment: ExperimentModel = new ExperimentModel();
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -31,10 +30,13 @@ export class ExperimentComponent implements OnInit {
     initialSlide: 1,
     effect: 'slide',
   };
+  public photoRoot: string;
 
   constructor(private navbarManager: NavbarManagerService,
               private api: CustomerApiService,
               private experimentService: ExperimentService,
+              private store: StoreService,
+              private photoMatch: PhotoMatchService
   ) {
   }
 
@@ -45,9 +47,12 @@ export class ExperimentComponent implements OnInit {
 
   public prepareTask(): void {
     this.taskReady = false;
-    this.api.getCustomer().subscribe((res: DefaultResponse<CustomerModel>) => {
+    const experiment = this.store.getCurrentExperimentValue();
+    const id = experiment.preparedSet[experiment.currentRound - 1];
+    this.api.fetchCustomer(id).subscribe((res: DefaultResponse<CustomerModel>) => {
       res.data.income = res.data.income / 77;
       this.currentCustomer = res.data;
+      this.photoRoot = this.photoMatch.getPhoto(res.data.age);
     });
     setTimeout(() => {
       this.taskReady = true;

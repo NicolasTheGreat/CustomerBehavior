@@ -15,8 +15,4 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-  testApi(): void {
-    this.api.saveResult().subscribe(console.log);
-  }
 }

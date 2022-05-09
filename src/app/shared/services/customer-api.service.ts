@@ -3,27 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CustomerModel } from '../models/customer.model';
 import { DefaultResponse } from '../models/default-response.model';
+import { ExperimentModel } from '../../modules/core/models/experiment.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerApiService {
   private url = 'http://kamienicznik.eastus.cloudapp.azure.com/backend';
+  // private url = 'http://localhost:5000';
 
   constructor(private http: HttpClient) {
   }
 
-  public getCustomer(): Observable<DefaultResponse<CustomerModel>> {
-    return this.http.get<DefaultResponse<CustomerModel>>(`${this.url}/random-customer`);
+  public fetchCustomer(id?: number): Observable<DefaultResponse<CustomerModel>> {
+    return this.http.get<DefaultResponse<CustomerModel>>(`${this.url}/customer?id=${id}`);
   }
 
-  public saveResult(): Observable<DefaultResponse<string>> {
+  public saveResult(experiment: ExperimentModel): Observable<DefaultResponse<string>> {
     const data = {
-      truePositive: 1,
-      trueNegative: 3,
-      falsePositive: 13,
-      falseNegative: 3,
+      supervisedResult: experiment.supervisedResult,
+      unsupervisedResult: experiment.unsupervisedResult,
     };
     return this.http.post<DefaultResponse<string>>(`${this.url}/dao/save`, data);
+  }
+
+  public fetchExperimentSet(): Observable<DefaultResponse<number[]>> {
+    return this.http.get<DefaultResponse<number[]>>(`${this.url}/generate-set`);
   }
 }

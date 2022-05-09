@@ -11,16 +11,19 @@ import { ExperimentModel } from '../../../core/models/experiment.model';
   styleUrls: ['./experiment-card.component.scss']
 })
 export class ExperimentCardComponent implements OnInit {
+  @Input() photoRoot: string;
   @Input() customer: CustomerModel;
   public showHint: Observable<boolean>;
+  // public photoRoot: string;
 
   constructor(private store: StoreService) {
     this.showHint = this.store.getCurrentExperiment().pipe(
-      map((value: ExperimentModel) => value.currentRound < 10)
+      map((value: ExperimentModel) => value.currentRound < 11)
     );
   }
 
   ngOnInit(): void {
+    console.log('onInit');
   }
 
 }

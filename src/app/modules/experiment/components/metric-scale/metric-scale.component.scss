@@ -19,7 +19,7 @@
 .scale-container {
   width: 275px;
   position: relative;
-  @include setFlexProps(column, start, center);
+  @include setFlexProps(column, flex-start, center);
 }
 
 .icon-scale {

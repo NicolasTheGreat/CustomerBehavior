@@ -12,13 +12,13 @@ export class ExperimentService {
     if (answer && !defaulter) {
       console.log('True Positive');
       this.store.increaseMetric(ConfusionMatrix.TRUE_POSITIVE);
-    } else if (answer && defaulter) {
+    } else if (!answer && defaulter) {
       console.log('True Negative');
       this.store.increaseMetric(ConfusionMatrix.TRUE_NEGATIVE);
-    } else if (!answer && defaulter) {
+    } else if (!answer && !defaulter) {
       console.log('False Negative');
       this.store.increaseMetric(ConfusionMatrix.FALSE_NEGATIVE);
-    } else if (!answer && !defaulter) {
+    } else if (answer && defaulter) {
       console.log('False Positive');
       this.store.increaseMetric(ConfusionMatrix.FALSE_POSITIVE);
     }

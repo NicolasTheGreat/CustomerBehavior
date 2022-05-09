@@ -1,7 +1,7 @@
 <ng-container *ngIf="customer">
   <mat-card class="experiment-card">
     <div class="image-container">
-      <img src="assets/men-photo.webp" alt="customer photo">
+      <img src="{{photoRoot}}" alt="customer photo">
     </div>
     <div class="customer-name">
       <h2><strong>Rajesh,</strong> {{customer.age}}</h2>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="metric-scale-container" *ngIf="showHint | async">
-      <app-metric-scale [riskPercent]="customer.riskChance | percentage"></app-metric-scale>
+      <app-metric-scale [riskPercent]="customer.predictedRiskChance | percentage"></app-metric-scale>
     </div>
   </mat-card>
 </ng-container>

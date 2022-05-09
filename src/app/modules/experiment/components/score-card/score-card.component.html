@@ -4,19 +4,19 @@
       <mat-card>
         <div class="section true-section">
           <div class="sub-section positive-section">
-            <p class="metric-description">
+            <p class="metric-description" style="color: green">
               True<br>Positive:
             </p>
-            <p class="metric-score">
-              {{experimentResult.result.truePositive}}
+            <p class="metric-score" style="color: green">
+              {{experimentResult.supervisedResult.truePositive + experimentResult.unsupervisedResult.truePositive}}
             </p>
           </div>
           <div class="sub-section negative-section">
-            <p class="metric-description">
+            <p class="metric-description" style="color: green">
               True<br>negative:
             </p>
-            <p class="metric-score">
-              {{experimentResult.result.trueNegative}}
+            <p class="metric-score" style="color: green">
+              {{experimentResult.supervisedResult.trueNegative + experimentResult.unsupervisedResult.trueNegative}}
             </p>
           </div>
         </div>
@@ -28,19 +28,19 @@
         </div>
         <div class="section true-section">
           <div class="sub-section positive-section">
-            <p class="metric-description">
+            <p class="metric-description" style="color: red">
               False<br>Positive:
             </p>
-            <p class="metric-score">
-              {{experimentResult.result.falsePositive}}
+            <p class="metric-score" style="color: red">
+              {{experimentResult.supervisedResult.falsePositive + experimentResult.unsupervisedResult.falsePositive}}
             </p>
           </div>
           <div class="sub-section negative-section">
-            <p class="metric-description">
+            <p class="metric-description" style="color: red">
               False<br>negative:
             </p>
-            <p class="metric-score">
-              {{experimentResult.result.falseNegative}}
+            <p class="metric-score" style="color: red">
+              {{experimentResult.supervisedResult.falseNegative + experimentResult.unsupervisedResult.falseNegative}}
             </p>
           </div>
         </div>

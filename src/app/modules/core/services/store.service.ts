@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ExperimentModel } from '../models/experiment.model';
 import { ConfusionMatrix } from '../../../shared/enums/confusionMatrix.enum';
+import { CustomerApiService } from '../../../shared/services/customer-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { ConfusionMatrix } from '../../../shared/enums/confusionMatrix.enum';
 export class StoreService {
   private currentExperiment: BehaviorSubject<ExperimentModel> = new BehaviorSubject<ExperimentModel>(new ExperimentModel());
 
-  constructor() {
+  constructor(private api: CustomerApiService) {
     const savedModel = this.getModelFromSessionStorage();
     if (savedModel) {
       this.currentExperiment.next(savedModel);
@@ -41,22 +42,30 @@ export class StoreService {
 
   public increaseMetric(variable: ConfusionMatrix): void {
     const model = this.getModelFromSessionStorage();
+    const resultType = model.currentRound < 11 ? 'supervisedResult' : 'unsupervisedResult';
+
     switch (variable) {
       case ConfusionMatrix.TRUE_POSITIVE:
-        model.result.truePositive++;
+        model[resultType].truePositive++;
         break;
       case ConfusionMatrix.TRUE_NEGATIVE:
-        model.result.trueNegative++;
+        model[resultType].trueNegative++;
         break;
       case ConfusionMatrix.FALSE_POSITIVE:
-        model.result.falsePositive++;
+        model[resultType].falsePositive++;
         break;
       case ConfusionMatrix.FALSE_NEGATIVE:
-        model.result.falseNegative++;
+        model[resultType].falseNegative++;
         break;
     }
+    model.score = (model.supervisedResult.truePositive - model.supervisedResult.falsePositive) + (model.unsupervisedResult.truePositive
+      - model.unsupervisedResult.falsePositive);
+    if (model.currentRound === 20) {
+      this.currentExperiment.next(model);
+      this.api.saveResult(model).subscribe();
+      return;
+    }
     model.currentRound++;
-    model.score = model.result.truePositive - model.result.trueNegative;
     this.currentExperiment.next(model);
   }
 }

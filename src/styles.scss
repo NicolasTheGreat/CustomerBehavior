@@ -10,3 +10,7 @@ body {
   font-family: Montserrat, "Montserrat", sans-serif;
   background-color: $light-blue;
 }
+
+swiper>.swiper.s-wrapper {
+  height: calc(100% - 82px) !important;
+}

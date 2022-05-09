@@ -11,4 +11,5 @@ export class CustomerModel {
   currentJobYears: number;
   currentHouseYears: number;
   riskChance: number;
+  predictedRiskChance: number;
 }
